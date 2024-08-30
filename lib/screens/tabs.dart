@@ -32,6 +32,15 @@ class _TabsScreenState extends State<TabsScreen> {
     });
   }
 
+  void _setScreen(String identifier) {
+    if(identifier == 'filters') {
+      
+    } else { 
+      //already on meals screen, so pop will close drawer
+      Navigator.of(context).pop();
+    }
+  }
+
   void _toggleMealFavoriteStatus(Meal meal) {
     final isFavorited = _favoritedMeals.contains(meal);
 
@@ -67,7 +76,9 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(activePageTitle),
       ),
-      drawer: const MainDrawer(),
+      drawer: MainDrawer(
+        onSelectScreen: _setScreen,
+      ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
